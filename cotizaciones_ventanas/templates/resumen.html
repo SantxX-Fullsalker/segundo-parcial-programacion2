@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Cotización</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Resumen de Cotización</h1>
+    <h2>Cliente: {{ cliente.nombre }} ({{ cliente.empresa }})</h2>
+    <h2>Cantidad de Ventanas: {{ cliente.cantidad_ventanas }}</h2>
+
+    <table>
+        <tr>
+            <th>Nave</th>
+            <th>Estilo</th>
+            <th>Dimensiones (Ancho x Alto)</th>
+            <th>Acabado</th>
+            <th>Vidrio</th>
+            <th>Esmerilado</th>
+        </tr>
+        {% for ventana in ventanas %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ ventana.estilo }}</td>
+            <td>{{ ventana.ancho }} x {{ ventana.alto }}</td>
+            <td>{{ ventana.acabado }}</td>
+            <td>{{ ventana.tipo_vidrio }}</td>
+            <td>{{ 'Sí' if ventana.esmerilado else 'No' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Costo Total: ${{ total }}</h3>
+
+    <form action="{{ url_for('index') }}" method="GET">
+        <button type="submit">Registrar nueva cotización</button>
+    </form>
+
+    <form action="{{ url_for('mostrar_cotizaciones') }}" method="GET">
+        <button type="submit">Ver todas las cotizaciones</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Cotizaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Listado de Cotizaciones Registradas</h1>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Empresa</th>
+            <th>Cantidad de Ventanas</th>
+            <th>Costo Total</th>
+        </tr>
+        {% for cotizacion in cotizaciones %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ cotizacion.cliente.nombre }}</td>
+            <td>{{ cotizacion.cliente.empresa }}</td>
+            <td>{{ cotizacion.cliente.cantidad_ventanas }}</td>
+            <td>${{ cotizacion.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form action="{{ url_for('index') }}" method="GET">
+        <button type="submit">Registrar nueva cotización</button>
+    </form>
+</body>
+</html>

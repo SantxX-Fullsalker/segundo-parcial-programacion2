@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Cliente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Ingrese los datos del cliente</h1>
+    <form action="{{ url_for('cliente') }}" method="POST">
+        <label for="nombre_cliente">Nombre del Cliente:</label>
+        <input type="text" name="nombre_cliente" required>
+
+        <label for="empresa_cliente">Nombre de la Empresa:</label>
+        <input type="text" name="empresa_cliente" required>
+
+        <label for="cantidad_ventanas">Cantidad de Ventanas:</label>
+        <input type="number" name="cantidad_ventanas" required>
+
+        <input type="submit" value="Continuar">
+    </form>
+</body>
+</html>
